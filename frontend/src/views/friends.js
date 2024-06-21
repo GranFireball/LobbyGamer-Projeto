@@ -45,7 +45,7 @@ export default function Friends() {
   const { data: friends, isLoading, error } = useQuery({
     queryKey: ['friends'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3001/players/' + sistemaPlayer.player.id + '/friends');
+      const response = await fetch('https://lobbygamer.onrender.com/' + sistemaPlayer.player.id + '/friends');
       if (!response.ok) {
         throw new Error("Erro ao carregar amigos");
       }

@@ -40,7 +40,7 @@ export default function FindPlayers() {
   const { data: players, isLoading, error } = useQuery({
     queryKey: ['players'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3001/players/' + sistemaPlayer.player.id + '/findplayers');
+      const response = await fetch('https://lobbygamer.onrender.com/' + sistemaPlayer.player.id + '/findplayers');
       if (!response.ok) {
         throw new Error("Erro ao carregar jogadores");
       }
