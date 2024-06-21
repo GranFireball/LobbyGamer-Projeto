@@ -89,10 +89,10 @@ const SendButton = styled.button`
   cursor: ${props => props.cursorpointer};
 `
 //url development environment
-const url = "http://localhost:3001";
+//const url = "http://localhost:3001";
 
 //url production environment
-// const url = ""
+const url = "https://lobbygamer.onrender.com";
 
 const socket = io(url);
 
