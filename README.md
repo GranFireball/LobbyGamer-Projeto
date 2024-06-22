@@ -1,3 +1,9 @@
+![Captura de tela 2024-06-22 130935](https://github.com/GranFireball/LobbyGamer-Projeto/assets/61765704/492b995c-463a-4b52-89e3-76983efb36ce)
+![Captura de tela 2024-06-22 131052](https://github.com/GranFireball/LobbyGamer-Projeto/assets/61765704/867331b9-a70d-4247-954e-d6fd7264b04d)
+![Captura de tela 2024-06-22 142231](https://github.com/GranFireball/LobbyGamer-Projeto/assets/61765704/08c09b69-f80d-4273-a49e-7c1031d6ccca)
+![Captura de tela 2024-06-22 142404](https://github.com/GranFireball/LobbyGamer-Projeto/assets/61765704/9bc007c6-e12f-4b39-aebe-a6c638acdf9e)
+![Captura de tela 2024-06-22 142253](https://github.com/GranFireball/LobbyGamer-Projeto/assets/61765704/099238f0-5bf4-4c0f-b762-38a989feca9e)
+
 ## Sobre o Projeto
 
 Este projeto é um sistema de chat em tempo real, composto por cinco páginas: Login, Criar Conta, Encontrar Jogadores, Amigos e Pedidos de Amizade.
@@ -21,3 +27,6 @@ Este projeto é um sistema de chat em tempo real, composto por cinco páginas: L
 ## Tecnologias e Ferramentas Utilizadas
 
 HTML, Styled-Components, Javascript, React, Zod, Socket.IO, NestJS, Typescript, MySQL
+
+# Link do Vídeo de Apresentação
+Link: 
