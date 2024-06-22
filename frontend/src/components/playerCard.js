@@ -60,7 +60,7 @@ export default function PlayerCard({player, status}){
   const sistemaPlayer = useContext(PlayerContext);
   const sistemaChat = useContext(ChatContext);
   const queryClient = useQueryClient();
-  const {mutate: sendFriendRequest} = useMutation({
+  const {mutate: sendFriendRequest, isPendingSendFriendRequest} = useMutation({
     mutationFn: async () => {
       const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriendrequest/" + player.id, {
         method: "PUT",
@@ -77,7 +77,7 @@ export default function PlayerCard({player, status}){
     }
   })
 
-  const {mutate: addFriend} = useMutation({
+  const {mutate: addFriend, isPendingAddFriend} = useMutation({
     mutationFn: async () => {
       const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriend/" + player.id, {
         method: "PUT",
@@ -94,7 +94,7 @@ export default function PlayerCard({player, status}){
     }
   })
 
-  const {mutate: removeFriendRequest} = useMutation({
+  const {mutate: removeFriendRequest, isPendingRemoveFriendRequest} = useMutation({
     mutationFn: async () => {
       const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/removefriendrequest/" + player.id, {
         method: "PUT",
@@ -123,13 +123,17 @@ export default function PlayerCard({player, status}){
         <h3>{player.nick}</h3>
         {
           status === "addFriend" && 
-          <IoPersonAdd size={32} style={{cursor: 'pointer'}} onClick={() => sendFriendRequest()}/>
+          <IoPersonAdd size={32} style={{cursor: 'pointer'}} onClick={() => {
+            if(!isPendingSendFriendRequest){
+              sendFriendRequest()
+            }
+          }}/>
         }
         {
           status === "friendRequest" && 
           <AnswerContainer>
-            <OptionButton bgcolor="#ff3021" bgcolorhover="#fa4739" onClick={() => removeFriendRequest()}><strong>X</strong></OptionButton>
-            <OptionButton bgcolor="#0cf514" bgcolorhover="#46fa4c" onClick={() => addFriend()}><FaCheck size={12}/></OptionButton>
+            <OptionButton disabled={isPendingRemoveFriendRequest} bgcolor="#ff3021" bgcolorhover="#fa4739" onClick={() => removeFriendRequest()}><strong>X</strong></OptionButton>
+            <OptionButton disabled={isPendingAddFriend} bgcolor="#0cf514" bgcolorhover="#46fa4c" onClick={() => addFriend()}><FaCheck size={12}/></OptionButton>
           </AnswerContainer>
         }
       </CardHeader>
