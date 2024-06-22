@@ -13,16 +13,20 @@ const MainContainer = styled.main`
 
 const GridFriendRequests = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 
-  @media only screen and (min-width: 768px){
-    grid-template-columns: repeat(3, 1fr);
+  @media only screen and (min-width: 400px){
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 780px){
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media only screen and (min-width: 1200px){
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 `
 
 const PTextCenter = styled.p`

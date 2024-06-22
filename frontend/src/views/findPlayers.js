@@ -21,7 +21,7 @@ const GridFindPlayers = styled.section`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media only screen and (min-width: 768px){
+  @media only screen and (min-width: 780px){
     grid-template-columns: repeat(4, 1fr);
   }
 
