@@ -72,16 +72,17 @@ export default function PlayerCard({player, status}){
           }
         })
         if(!response.ok){
+          setTimeout(() => setLoading(false), 3000);
           throw new Error("Erro ao enviar pedido de amizade");
         }
       }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({queryKey: ['players']});
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
     },
     onError: () => {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
       throw new Error("Erro ao enviar pedido de amizade");
     }
   })
@@ -97,16 +98,17 @@ export default function PlayerCard({player, status}){
           }
         })
         if(!response.ok){
+          setTimeout(() => setLoading(false), 3000);
           throw new Error("Erro ao adicionar jogador");
         }
       }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({queryKey: ['friendRequests']});
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
     },
     onError: () => {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
       throw new Error("Erro ao adicionar jogador");
     }
   })
@@ -122,16 +124,17 @@ export default function PlayerCard({player, status}){
           }
         })
         if(!response.ok){
+          setTimeout(() => setLoading(false), 3000);
           throw new Error("Erro ao recusar pedido de amizade");
         }
       }
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({queryKey: ['friendRequests']});
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
     },
     onError: () => {
-      setLoading(false);
+      setTimeout(() => setLoading(false), 3000);
       throw new Error("Erro ao recusar pedido de amizade");
     }
   })
@@ -148,18 +151,27 @@ export default function PlayerCard({player, status}){
         <h3>{player.nick}</h3>
         {
           status === "addFriend" && 
+          (loading || isPendingSendFriendRequest) ?
+          <IoPersonAdd size={32} style={{cursor: 'pointer'}}/>
+          :
           <IoPersonAdd size={32} style={{cursor: 'pointer'}} onClick={() => {
-            if(!isPendingSendFriendRequest){
+            if(!loading && !isPendingSendFriendRequest){
               sendFriendRequest()
             }
           }}/>
         }
         {
           status === "friendRequest" && 
+          (loading || isPendingRemoveFriendRequest || isPendingAddFriend) ?
           <AnswerContainer>
-            <OptionButton disabled={isPendingRemoveFriendRequest} bgcolor="#ff3021" bgcolorhover="#fa4739" onClick={() => removeFriendRequest()}><strong>X</strong></OptionButton>
-            <OptionButton disabled={isPendingAddFriend} bgcolor="#0cf514" bgcolorhover="#46fa4c" onClick={() => addFriend()}><FaCheck size={12}/></OptionButton>
+            <OptionButton disabled={isPendingRemoveFriendRequest} bgcolor="#ff3021" bgcolorhover="#fa4739"><strong>X</strong></OptionButton>
+            <OptionButton disabled={isPendingAddFriend} bgcolor="#0cf514" bgcolorhover="#46fa4c"><FaCheck size={12}/></OptionButton>
           </AnswerContainer>
+          :
+          <AnswerContainer>
+          <OptionButton disabled={isPendingRemoveFriendRequest} bgcolor="#ff3021" bgcolorhover="#fa4739" onClick={() => removeFriendRequest()}><strong>X</strong></OptionButton>
+          <OptionButton disabled={isPendingAddFriend} bgcolor="#0cf514" bgcolorhover="#46fa4c" onClick={() => addFriend()}><FaCheck size={12}/></OptionButton>
+        </AnswerContainer>
         }
       </CardHeader>
       <HorizontallLine></HorizontallLine>
