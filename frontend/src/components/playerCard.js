@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import styled from "styled-components"
 import { IoPersonAdd } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ChatContext from "../context/ChatContext";
 import PlayerContext from "../context/PlayerContext";
 
@@ -60,54 +60,79 @@ export default function PlayerCard({player, status}){
   const sistemaPlayer = useContext(PlayerContext);
   const sistemaChat = useContext(ChatContext);
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const {mutate: sendFriendRequest, isPendingSendFriendRequest} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriendrequest/" + player.id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
+      if(!loading){
+        setLoading(true);
+        const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriendrequest/" + player.id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        if(!response.ok){
+          throw new Error("Erro ao enviar pedido de amizade");
         }
-      })
-      if(!response.ok){
-        throw new Error("Erro ao enviar pedido de amizade");
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['players']});
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({queryKey: ['players']});
+      setLoading(false);
+    },
+    onError: () => {
+      setLoading(false);
+      throw new Error("Erro ao enviar pedido de amizade");
     }
   })
 
   const {mutate: addFriend, isPendingAddFriend} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriend/" + player.id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
+      if(!loading){
+        setLoading(true);
+        const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriend/" + player.id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        if(!response.ok){
+          throw new Error("Erro ao adicionar jogador");
         }
-      })
-      if(!response.ok){
-        throw new Error("Erro ao adicionar jogador");
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['friendRequests']});
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({queryKey: ['friendRequests']});
+      setLoading(false);
+    },
+    onError: () => {
+      setLoading(false);
+      throw new Error("Erro ao adicionar jogador");
     }
   })
 
   const {mutate: removeFriendRequest, isPendingRemoveFriendRequest} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/removefriendrequest/" + player.id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
+      if(!loading){
+        setLoading(true);
+        const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/removefriendrequest/" + player.id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        if(!response.ok){
+          throw new Error("Erro ao recusar pedido de amizade");
         }
-      })
-      if(!response.ok){
-        throw new Error("Erro ao recusar pedido de amizade");
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['friendRequests']});
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({queryKey: ['friendRequests']});
+      setLoading(false);
+    },
+    onError: () => {
+      setLoading(false);
+      throw new Error("Erro ao recusar pedido de amizade");
     }
   })
 
