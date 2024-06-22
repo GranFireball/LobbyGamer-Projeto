@@ -12,6 +12,12 @@ Este projeto é um sistema de chat em tempo real, composto por cinco páginas: L
 
 - Pedidos de Amizade: Nesta página, são exibidos os pedidos de amizade recebidos pelo usuário. Há opções para aceitar ou recusar cada pedido.
 
+## Segurança dos Dados
+
+- A senha é gerada com criptografia de mão única, ou seja, esta ação não pode ser revertida e consequentemente não é possível ser visualizada.
+
+- As mensagens são criptografadas e armazenadas no banco de dados com a criptografia, sendo descriptografadas apenas para serem mostradas no chat da conversa.
+
 ## Tecnologias e Ferramentas Utilizadas
 
 HTML, Styled-Components, Javascript, React, Zod, Socket.IO, NestJS, Typescript, MySQL
