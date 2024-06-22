@@ -72,7 +72,7 @@ export default function Login() {
 
   async function getLoginPlayer(dataLoginForm) {
     setLoading(true);
-    const response = await fetch("https://lobbygamer.onrender.com/" + dataLoginForm.nick + "/" + dataLoginForm.password);
+    const response = await fetch("https://lobbygamer.onrender.com/players/" + dataLoginForm.nick + "/" + dataLoginForm.password);
     if (!response.ok) {
       throw new Error("Erro ao fazer login");
     }

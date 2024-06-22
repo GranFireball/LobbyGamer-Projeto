@@ -144,7 +144,7 @@ export default function CreateAccount() {
         friendRequestsReceived: [],
         friends: []
       }
-      const response = await fetch("https://lobbygamer.onrender.com", {
+      const response = await fetch("https://lobbygamer.onrender.com/players", {
         method: "POST",
         body: JSON.stringify(dataAccount),
         headers: {

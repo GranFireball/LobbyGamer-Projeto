@@ -62,7 +62,7 @@ export default function PlayerCard({player, status}){
   const queryClient = useQueryClient();
   const {mutate: sendFriendRequest} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/" + sistemaPlayer.player.id + "/addfriendrequest/" + player.id, {
+      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriendrequest/" + player.id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -79,7 +79,7 @@ export default function PlayerCard({player, status}){
 
   const {mutate: addFriend} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/" + sistemaPlayer.player.id + "/addfriend/" + player.id, {
+      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/addfriend/" + player.id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -96,7 +96,7 @@ export default function PlayerCard({player, status}){
 
   const {mutate: removeFriendRequest} = useMutation({
     mutationFn: async () => {
-      const response = await fetch("https://lobbygamer.onrender.com/" + sistemaPlayer.player.id + "/removefriendrequest/" + player.id, {
+      const response = await fetch("https://lobbygamer.onrender.com/players/" + sistemaPlayer.player.id + "/removefriendrequest/" + player.id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

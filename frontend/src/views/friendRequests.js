@@ -35,7 +35,7 @@ export default function FriendRequests() {
   const { data: friendRequests, isLoading, error } = useQuery({
     queryKey: ['friendRequests'],
     queryFn: async () => {
-      const response = await fetch('https://lobbygamer.onrender.com/' + sistemaPlayer.player.id + '/friendrequests');
+      const response = await fetch('https://lobbygamer.onrender.com/players/' + sistemaPlayer.player.id + '/friendrequests');
       if (!response.ok) {
         throw new Error("Erro ao carregar pedidos de amizade");
       }
