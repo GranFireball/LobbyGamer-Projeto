@@ -29,4 +29,4 @@ Este projeto é um sistema de chat em tempo real, composto por cinco páginas: L
 HTML, Styled-Components, Javascript, React, Zod, Socket.IO, NestJS, Typescript, MySQL
 
 # Link do Vídeo de Apresentação
-Link: 
+Link: https://www.linkedin.com/feed/update/urn:li:activity:7210416265222377474/
